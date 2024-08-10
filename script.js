@@ -1,5 +1,17 @@
 function minDate(dates) {
   //write you code here
+	// Convert the array of date strings to an array of Date objects
+    let dateObjects = dates.map(dateStr => new Date(dateStr.replace(/(\d{4})\/(\d{2})\/(\d{2})/, '$1-$2-$3')));
+    
+    // Find the minimum date by sorting the array of Date objects
+    let minDateObj = new Date(Math.min(...dateObjects.map(date => date.getTime())));
+    
+    // Convert the minimum date object back to a string in the format "YYYY/MM/DD"
+    let year = minDateObj.getFullYear();
+    let month = String(minDateObj.getMonth() + 1).padStart(2, '0');
+    let day = String(minDateObj.getDate()).padStart(2, '0');
+    
+    return `${year}/${month}/${day}`;
 }
 
 // Do not change the code
